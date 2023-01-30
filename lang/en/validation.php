@@ -158,9 +158,9 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
-        ],
+        'user' => [
+            'created_successfully' => 'Your account was created successfully. Check your email and verify your account.'
+        ]
     ],
 
     /*
