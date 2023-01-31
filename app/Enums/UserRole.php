@@ -2,8 +2,8 @@
 
 namespace App\Enums;
 
-enum UserType: string
+enum UserRole: string
 {
-    case Standard = 'standard';
     case Business = 'business';
+    case User = 'user';
 }
