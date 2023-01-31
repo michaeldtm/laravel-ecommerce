@@ -1,7 +1,6 @@
 <?php
 
 use App\Models\User;
-use Illuminate\Testing\Fluent\AssertableJson;
 
 test('users can authenticate', function () {
     $user = User::factory()->create();
