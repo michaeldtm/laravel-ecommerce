@@ -46,6 +46,19 @@ it('requires valid data when register a new address', function ($data, $errors) 
     'state missing' => [['state' => null], ['state' => 'required']]
 ]);
 
+it('get specific user address information', function () {
+    $user = loginAsUser();
+
+    $address = UserAddress::factory()->default_address()->for($user)->create();
+
+    $this->get(route('user_address.show', $address->id))
+        ->assertOk()
+        ->assertJson(fn (AssertableJson $json) =>
+            $json->where('data.address_1', $address->address_1)
+                ->etc()
+        );
+});
+
 it('allows to register a new user address but default address already exists', function () {
     $user = User::factory()
         ->has(UserAddress::factory()->default_address()->count(1), 'addresses')

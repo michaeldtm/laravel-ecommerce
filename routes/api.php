@@ -26,6 +26,9 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::post('/user/addresses', [UserAddressController::class, 'store'])
         ->name('user_address.store');
 
+    Route::get('/user/addresses/{userAddress}', [UserAddressController::class, 'show'])
+        ->name('user_address.show');
+
     Route::put('/user/addresses/{userAddress}', [UserAddressController::class, 'update'])
         ->name('user_address.update');
 

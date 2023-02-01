@@ -34,6 +34,11 @@ class UserAddressController extends Controller
         ]);
     }
 
+    public function show(UserAddress $userAddress): UserAddressResource
+    {
+        return UserAddressResource::make($userAddress);
+    }
+
     public function update(UserAddressRequest $request, UserAddress $userAddress): JsonResponse
     {
         if ($request->filled('default_address')) {
