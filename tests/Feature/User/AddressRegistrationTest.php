@@ -16,7 +16,7 @@ test('get addresses for authenticated user', function () {
 
     loginAsUser($user);
 
-    $this->get(route('user_address.index'))
+    $this->getJson(route('user_address.index'))
         ->assertOk()
         ->assertJson(fn (AssertableJson $json) => $json->has('data', 5));
 
@@ -28,7 +28,7 @@ it('allows to register a new user address', function () {
 
     loginAsUser();
 
-    $this->post(route('user_address.store'), $address->toArray())
+    $this->postJson(route('user_address.store'), $address->toArray())
         ->assertOk()
         ->assertJson([
             'message' => __('messages.user_address.created')
@@ -51,7 +51,7 @@ it('get specific user address information', function () {
 
     $address = UserAddress::factory()->default_address()->for($user)->create();
 
-    $this->get(route('user_address.show', $address->uuid))
+    $this->getJson(route('user_address.show', $address->uuid))
         ->assertOk()
         ->assertJson(fn (AssertableJson $json) =>
             $json->where('data.address_1', $address->address_1)
@@ -70,7 +70,7 @@ it('allows to register a new user address but default address already exists', f
 
     loginAsUser($user);
 
-    $this->post(route('user_address.store'), $address->toArray())
+    $this->postJson(route('user_address.store'), $address->toArray())
         ->assertOk()
         ->assertJson([
             'message' => __('messages.user_address.created')
@@ -92,7 +92,7 @@ it('allows to update an existing address', function () {
 
     $address = UserAddress::factory()->default_address()->for($user)->create();
 
-    $this->put(route('user_address.update', $address->uuid), [
+    $this->putJson(route('user_address.update', $address->uuid), [
         ...$address->toArray(),
         'address_2' => '2nd address updated.'
     ])->assertOk()
@@ -112,7 +112,7 @@ it('allows to set another default address and remove current one', function () {
 
     $address = UserAddress::factory()->for($user)->create();
 
-    $this->put(route('user_address.update', $address->uuid), [
+    $this->putJson(route('user_address.update', $address->uuid), [
         'default_address' => true
     ])->assertOk()
         ->assertJson([
@@ -137,7 +137,7 @@ it('allows to delete an existing address if is not default address', function ()
 
     $address = UserAddress::factory()->for($user)->create();
 
-    $this->delete(route('user_address.destroy', $address->uuid))
+    $this->deleteJson(route('user_address.destroy', $address->uuid))
         ->assertOk()
         ->assertJson([
             'message' => __('messages.user_address.deleted')
@@ -153,7 +153,7 @@ it('cannot delete default address', function () {
 
     $address = UserAddress::factory()->default_address()->for($user)->create();
 
-    $this->delete(route('user_address.destroy', $address->uuid))
+    $this->deleteJson(route('user_address.destroy', $address->uuid))
         ->assertOk()
         ->assertJson([
             'message' => __('errors.user_address.default_address')
