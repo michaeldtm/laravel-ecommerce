@@ -4,12 +4,20 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\UserAddressRequest;
+use App\Http\Resources\User\UserAddressResource;
 use App\Models\User;
 use App\Models\UserAddress;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class UserAddressController extends Controller
 {
+    public function index(): AnonymousResourceCollection
+    {
+        $addresses = UserAddress::forUser(request()->user())->get();
+
+        return UserAddressResource::collection($addresses);
+    }
     public function store(UserAddressRequest $request): JsonResponse
     {
         /** @var User $user */

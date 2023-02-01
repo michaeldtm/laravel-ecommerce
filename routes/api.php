@@ -20,6 +20,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::group(['middleware' => 'auth:sanctum'], function () {
+    Route::get('/user/addresses', [UserAddressController::class, 'index'])
+        ->name('user_address.index');
+
     Route::post('/user/addresses', [UserAddressController::class, 'store'])
         ->name('user_address.store');
 

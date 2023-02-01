@@ -2,6 +2,26 @@
 
 use App\Models\User;
 use App\Models\UserAddress;
+use Illuminate\Testing\Fluent\AssertableJson;
+
+test('get addresses for authenticated user', function () {
+    $user = User::factory()
+        ->has(UserAddress::factory()->default_address()->count(1), 'addresses')
+        ->has(UserAddress::factory()->state(['default_address' => false])->count(4), 'addresses')
+        ->create();
+
+    User::factory()
+        ->has(UserAddress::factory()->default_address()->count(1), 'addresses')
+        ->create();
+
+    loginAsUser($user);
+
+    $this->get(route('user_address.index'))
+        ->assertOk()
+        ->assertJson(fn (AssertableJson $json) => $json->has('data', 5));
+
+    $this->assertDatabaseCount('user_addresses', 6);
+});
 
 it('allows to register a new user address', function () {
     $address = UserAddress::factory()->make();
