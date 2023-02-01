@@ -35,6 +35,17 @@ it('allows to register a new user address', function () {
         ]);
 });
 
+it('requires valid data when register a new address', function ($data, $errors) {
+    loginAsUser();
+
+    $this->postJson(route('user_address.store'), $data)->assertInvalid($errors);
+})->with([
+    'full name missing' => [['full_name' => null], ['full_name' => 'required']],
+    'address missing' => [['address_1' => null], ['address_1' => 'required']],
+    'city missing' => [['city' => null], ['city' => 'required']],
+    'state missing' => [['state' => null], ['state' => 'required']]
+]);
+
 it('allows to register a new user address but default address already exists', function () {
     $user = User::factory()
         ->has(UserAddress::factory()->default_address()->count(1), 'addresses')
