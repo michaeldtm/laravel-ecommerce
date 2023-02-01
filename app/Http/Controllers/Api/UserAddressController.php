@@ -69,7 +69,7 @@ class UserAddressController extends Controller
         }
 
         return  response()->json([
-            'message' => 'Some errors occurred when trying to perform this action. Try again later.'
+            'message' => __('errors.occurred')
         ]);
     }
 

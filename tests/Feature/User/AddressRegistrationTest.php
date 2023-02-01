@@ -7,7 +7,7 @@ use Illuminate\Testing\Fluent\AssertableJson;
 test('get addresses for authenticated user', function () {
     $user = User::factory()
         ->has(UserAddress::factory()->default_address()->count(1), 'addresses')
-        ->has(UserAddress::factory()->state(['default_address' => false])->count(4), 'addresses')
+        ->has(UserAddress::factory()->count(4), 'addresses')
         ->create();
 
     User::factory()
@@ -86,9 +86,7 @@ it('allows to set another default address and remove current one', function () {
 
     $defaultAddress = UserAddress::factory()->default_address()->for($user)->create();
 
-    $address = UserAddress::factory()->for($user)->create([
-        'default_address' => false
-    ]);
+    $address = UserAddress::factory()->for($user)->create();
 
     $this->put(route('user_address.update', $address->id), [
         'default_address' => true
@@ -113,9 +111,7 @@ it('allows to delete an existing address if is not default address', function ()
 
     UserAddress::factory()->default_address()->for($user)->create();
 
-    $address = UserAddress::factory()->for($user)->create([
-        'default_address' => false
-    ]);
+    $address = UserAddress::factory()->for($user)->create();
 
     $this->delete(route('user_address.destroy', $address->id))
         ->assertOk()

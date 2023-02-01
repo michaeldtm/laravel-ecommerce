@@ -26,7 +26,8 @@ class UserAddressFactory extends Factory
             'address_1' => $address,
             'city' => $city,
             'state' => $state,
-            'zipcode' => $zipcode
+            'zipcode' => $zipcode,
+            'default_address' => false,
         ];
     }
 
