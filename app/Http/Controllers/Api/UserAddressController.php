@@ -26,4 +26,24 @@ class UserAddressController extends Controller
         ]);
     }
 
+    public function update(UserAddressRequest $request, UserAddress $userAddress): JsonResponse
+    {
+        if ($request->filled('default_address')) {
+            $defaultAddress = UserAddress::query()->where('default_address', true)
+                ->whereNot('id', $userAddress->id)
+                ->first();
+
+            if ($defaultAddress) {
+                $defaultAddress->default_address = false;
+                $defaultAddress->save();
+            }
+        }
+
+        $userAddress->update($request->validated());
+
+        return response()->json([
+            'message' => __('messages.user_address.updated'),
+        ]);
+    }
+
 }

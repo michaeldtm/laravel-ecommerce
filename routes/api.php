@@ -22,4 +22,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::post('/user/addresses', [UserAddressController::class, 'store'])
         ->name('user_address.store');
+
+    Route::put('/user/addresses/{userAddress}', [UserAddressController::class, 'update'])
+        ->name('user_address.update');
 });

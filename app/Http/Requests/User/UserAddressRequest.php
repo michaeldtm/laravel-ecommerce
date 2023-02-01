@@ -24,13 +24,14 @@ class UserAddressRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'full_name' => ['required', 'string', 'max:255'],
+            'full_name' => ['required_without:default_address', 'string', 'max:255'],
             'phone' => ['string', 'max:25'],
-            'address_1' => ['required', 'string'],
+            'address_1' => ['required_without:default_address', 'string'],
             'address_2' => ['string'],
-            'city' => ['required', 'string', 'max:30'],
-            'state' => ['required', 'string', 'max:30'],
-            'zipcode' => ['string', 'max:10']
+            'city' => ['required_without:default_address', 'string', 'max:30'],
+            'state' => ['required_without:default_address', 'string', 'max:30'],
+            'zipcode' => ['string', 'max:10'],
+            'default_address' => ['boolean'],
         ];
     }
 }
