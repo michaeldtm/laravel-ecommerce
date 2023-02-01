@@ -163,3 +163,13 @@ it('cannot delete default address', function () {
         'uuid' => $address->uuid
     ]);
 });
+
+it('returns a 404 message if provided key is not found', function () {
+    loginAsUser();
+
+    $this->getJson(route('user_address.show', 'wrong-uuid'))
+        ->assertStatus(404)
+        ->assertJson([
+            'error' => __('errors.not_found', ['name' => 'user address'])
+        ]);
+});
