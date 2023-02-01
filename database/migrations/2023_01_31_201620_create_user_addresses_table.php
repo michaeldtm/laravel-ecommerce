@@ -16,6 +16,7 @@ return new class extends Migration
     {
         Schema::create('user_addresses', function (Blueprint $table) {
             $table->id();
+            $table->ulid()->index();
             $table->foreignIdFor(User::class)->constrained();
             $table->string('full_name');
             $table->string('phone');
