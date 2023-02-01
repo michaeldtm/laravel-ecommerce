@@ -8,7 +8,7 @@ it('allows to register a new user address', function () {
 
     loginAsUser();
 
-    $this->post(route('user.address'), $address->toArray())
+    $this->post(route('user_address.store'), $address->toArray())
         ->assertOk()
         ->assertJson([
             'message' => __('messages.user_address.created')
@@ -26,7 +26,7 @@ it('allows to register a new user address but default address already exists', f
 
     loginAsUser($user);
 
-    $this->post(route('user.address'), $address->toArray())
+    $this->post(route('user_address.store'), $address->toArray())
         ->assertOk()
         ->assertJson([
             'message' => __('messages.user_address.created')
