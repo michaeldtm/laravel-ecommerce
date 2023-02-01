@@ -46,4 +46,23 @@ class UserAddressController extends Controller
         ]);
     }
 
+    public function destroy(UserAddress $userAddress): JsonResponse
+    {
+        if ($userAddress->default_address) {
+            return response()->json([
+                'message' => __('errors.user_address.default_address')
+            ]);
+        }
+
+        if ($userAddress->delete()) {
+            return response()->json([
+                'message' => __('messages.user_address.deleted')
+            ]);
+        }
+
+        return  response()->json([
+            'message' => 'Some errors occurred when trying to perform this action. Try again later.'
+        ]);
+    }
+
 }

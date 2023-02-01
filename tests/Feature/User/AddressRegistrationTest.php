@@ -87,3 +87,39 @@ it('allows to set another default address and remove current one', function () {
         'default_address' => true
     ]);
 });
+
+it('allows to delete an existing address if is not default address', function () {
+    $user = loginAsUser();
+
+    UserAddress::factory()->default_address()->for($user)->create();
+
+    $address = UserAddress::factory()->for($user)->create([
+        'default_address' => false
+    ]);
+
+    $this->delete(route('user_address.destroy', $address->id))
+        ->assertOk()
+        ->assertJson([
+            'message' => __('messages.user_address.deleted')
+        ]);
+
+    $this->assertDatabaseMissing('user_addresses', [
+        'id' => $address->id
+    ]);
+});
+
+it('cannot delete default address', function () {
+    $user = loginAsUser();
+
+    $address = UserAddress::factory()->default_address()->for($user)->create();
+
+    $this->delete(route('user_address.destroy', $address->id))
+        ->assertOk()
+        ->assertJson([
+            'message' => __('errors.user_address.default_address')
+        ]);
+
+    $this->assertDatabaseHas('user_addresses', [
+        'id' => $address->id
+    ]);
+});
