@@ -18,6 +18,7 @@ class UserAddressController extends Controller
 
         return UserAddressResource::collection($addresses);
     }
+
     public function store(UserAddressRequest $request): JsonResponse
     {
         /** @var User $user */
@@ -77,5 +78,4 @@ class UserAddressController extends Controller
             'message' => __('errors.occurred')
         ]);
     }
-
 }
