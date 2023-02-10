@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductRequest;
 use App\Http\Resources\ProductResource;
 use App\Models\Product;
+use App\Models\ProductFeature;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
@@ -16,7 +17,7 @@ class ProductController extends Controller
     public function index(): AnonymousResourceCollection
     {
         $products = Product::forUser(request()->user())
-            ->with('categories')
+            ->with(['categories', 'features'])
             ->simplePaginate();
 
         return ProductResource::collection($products);
@@ -34,6 +35,13 @@ class ProductController extends Controller
             );
 
             $product->categories()->sync($request->get('categories'));
+
+            $features = [];
+            foreach ($request->get('features') as $feature) {
+                $model = new ProductFeature;
+                $features[] = $model->fill(['description' => $feature]);
+            }
+            $product->features()->saveMany($features);
 
             return $product;
         });

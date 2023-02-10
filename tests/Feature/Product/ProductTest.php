@@ -2,6 +2,7 @@
 
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\ProductFeature;
 use App\Models\User;
 use Illuminate\Testing\Fluent\AssertableJson;
 
@@ -15,6 +16,7 @@ it('get paginated products for authenticated user', function () {
     User::factory()->has(
         Product::factory()
             ->has(Category::factory()->count(2))
+            ->has(ProductFeature::factory()->count(2), 'features')
             ->count(5)
     )->create();
 
@@ -44,8 +46,11 @@ it('get paginated products for authenticated user', function () {
 it('allows to create a new product', function () {
     $categories = Category::factory()->count(2)->create();
 
+    $features = ProductFeature::factory()->count(2)->make();
+
     $product = Product::factory()->make();
     $product->categories = $categories->pluck('id')->toArray();
+    $product->features = collect($features->toArray())->flatten()->toArray();
 
     loginAsUser();
 
@@ -55,13 +60,9 @@ it('allows to create a new product', function () {
             'message' => __('messages.product.created')
         ]);
 
-    $this->assertDatabaseHas('products', [
-        'name' => $product->name,
-    ]);
-
-    $this->assertDatabaseHas('category_product', [
-        'category_id' => $categories->first()->id,
-    ]);
+    $this->assertDatabaseHas('products', ['name' => $product->name]);
+    $this->assertDatabaseHas('product_features', ['description' => $features->first()->description]);
+    $this->assertDatabaseHas('category_product', ['category_id' => $categories->first()->id]);
 });
 
 it('requires valid data to create a new product', function ($data, $errors) {

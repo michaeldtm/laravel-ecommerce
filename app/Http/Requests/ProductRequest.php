@@ -29,6 +29,7 @@ class ProductRequest extends FormRequest
             'price' => ['required', 'integer', 'gt:0'],
             'categories' => ['required'],
             'categories.*' => ['exists:categories,id'],
+            'features' => ['required', 'array', 'min:2'],
         ];
     }
 }

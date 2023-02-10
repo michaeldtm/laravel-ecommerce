@@ -36,12 +36,6 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        Schema::create('product_features', function (Blueprint $table) {
-            $table->id();
-            $table->foreignIdFor(Product::class)->constrained();
-            $table->string('description');
-        });
-
         Schema::create('category_product', function (Blueprint $table) {
             $table->foreignIdFor(Category::class);
             $table->foreignIdFor(Product::class);
@@ -56,7 +50,6 @@ return new class extends Migration
     public function down()
     {
         Schema::dropIfExists('categories_products');
-        Schema::dropIfExists('product_features');
         Schema::dropIfExists('product_images');
         Schema::dropIfExists('products');
     }
