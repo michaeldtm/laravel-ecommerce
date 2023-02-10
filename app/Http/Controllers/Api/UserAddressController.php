@@ -35,16 +35,16 @@ class UserAddressController extends Controller
         ]);
     }
 
-    public function show(UserAddress $userAddress): UserAddressResource
+    public function show(UserAddress $address): UserAddressResource
     {
-        return UserAddressResource::make($userAddress);
+        return UserAddressResource::make($address);
     }
 
-    public function update(UserAddressRequest $request, UserAddress $userAddress): JsonResponse
+    public function update(UserAddressRequest $request, UserAddress $address): JsonResponse
     {
         if ($request->filled('default_address')) {
             $defaultAddress = UserAddress::query()->where('default_address', true)
-                ->whereNot('id', $userAddress->id)
+                ->whereNot('id', $address->id)
                 ->first();
 
             if ($defaultAddress) {
@@ -53,22 +53,22 @@ class UserAddressController extends Controller
             }
         }
 
-        $userAddress->update($request->validated());
+        $address->update($request->validated());
 
         return response()->json([
             'message' => __('messages.user_address.updated'),
         ]);
     }
 
-    public function destroy(UserAddress $userAddress): JsonResponse
+    public function destroy(UserAddress $address): JsonResponse
     {
-        if ($userAddress->default_address) {
+        if ($address->default_address) {
             return response()->json([
                 'message' => __('errors.user_address.default_address')
             ]);
         }
 
-        if ($userAddress->delete()) {
+        if ($address->delete()) {
             return response()->json([
                 'message' => __('messages.user_address.deleted')
             ]);
