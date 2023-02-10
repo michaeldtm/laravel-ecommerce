@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\UserAddressController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -23,4 +24,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::prefix('user')->group(function () {
         Route::apiResource('address', UserAddressController::class)->names('user_address');
     });
+
+    Route::get('/products', [ProductController::class, 'index'])
+        ->name('products.index');
 });
