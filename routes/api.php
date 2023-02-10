@@ -20,18 +20,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::group(['middleware' => 'auth:sanctum'], function () {
-    Route::get('/user/addresses', [UserAddressController::class, 'index'])
-        ->name('user_address.index');
-
-    Route::post('/user/addresses', [UserAddressController::class, 'store'])
-        ->name('user_address.store');
-
-    Route::get('/user/addresses/{userAddress}', [UserAddressController::class, 'show'])
-        ->name('user_address.show');
-
-    Route::put('/user/addresses/{userAddress}', [UserAddressController::class, 'update'])
-        ->name('user_address.update');
-
-    Route::delete('/user/addresses/{userAddress}', [UserAddressController::class, 'destroy'])
-        ->name('user_address.destroy');
+    Route::prefix('user')->group(function () {
+        Route::apiResource('address', UserAddressController::class)->names('user_address');
+    });
 });
