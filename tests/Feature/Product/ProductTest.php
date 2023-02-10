@@ -40,3 +40,40 @@ it('get paginated products for authenticated user', function () {
 
     $this->assertDatabaseCount('products', 25);
 });
+
+it('allows to create a new product', function () {
+    $categories = Category::factory()->count(2)->create();
+
+    $product = Product::factory()->make();
+    $product->categories = $categories->pluck('id')->toArray();
+
+    loginAsUser();
+
+    $this->postJson(route('products.store'), $product->toArray())
+        ->assertOk()
+        ->assertJson([
+            'message' => __('messages.product.created')
+        ]);
+
+    $this->assertDatabaseHas('products', [
+        'name' => $product->name,
+    ]);
+
+    $this->assertDatabaseHas('category_product', [
+        'category_id' => $categories->first()->id,
+    ]);
+});
+
+it('requires valid data to create a new product', function ($data, $errors) {
+    loginAsUser();
+
+    $this->postJson(route('products.store'), $data)->assertInvalid($errors);
+})->with([
+    'name missing' => [['full_name' => null], ['name' => 'required']],
+    'description' => [['description' => null], ['description' => 'required']],
+    'price missing' => [['price' => null], ['price' => 'required']],
+    'price is zero' => [['price' => 0], ['price' => 'greater than']],
+    'price below zero' => [['price' => -1], ['price' => 'greater than']],
+    'categories missing' => [['categories' => null], ['categories' => 'required']],
+    'non existing category' => [['categories' => [1]], ['categories.0' => 'invalid']]
+]);

@@ -25,6 +25,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
         Route::apiResource('address', UserAddressController::class)->names('user_address');
     });
 
-    Route::get('/products', [ProductController::class, 'index'])
-        ->name('products.index');
+    Route::get('/products', [ProductController::class, 'index'])->name('products.index');
+
+    Route::post('products', [ProductController::class, 'store'])->name('products.store');
 });
