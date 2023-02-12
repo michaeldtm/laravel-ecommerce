@@ -95,3 +95,47 @@ it('get specific product information', function () {
                 ->etc()
         );
 });
+
+it('allows to update an existing product', function () {
+    $user = loginAsUser();
+
+    $product = Product::factory()
+        ->has(Category::factory()->count(2))
+        ->has(ProductFeature::factory()->count(2), 'features')
+        ->for($user)->create();
+
+    $category = Category::factory()->create();
+
+    $categories = $product->categories;
+    $features = $product->features;
+
+    $this->putJson(route('products.update', $product->sku), [
+        ...$product->only(['name', 'description', 'price']),
+        'name' => 'Test product name',
+        'categories' => [
+            3
+        ],
+        'features' => [
+            'This is a great way to test something',
+            'This is another great feature from this product'
+        ]
+    ])->assertOk()
+        ->assertJson([
+            'message' => __('messages.product.updated')
+        ]);
+
+    $this->assertDatabaseHas('products', ['sku' => $product->sku, 'name' => 'Test product name']);
+    $this->assertDatabaseHas('product_features', [
+        'product_id' => $product->id,
+        'description' => 'This is a great way to test something',
+    ]);
+    $this->assertDatabaseMissing('product_features', [
+        'product_id' => $product->id,
+        'description' => $features->first()->description,
+    ]);
+    $this->assertDatabaseHas('category_product', ['product_id' => $product->id, 'category_id' => $category->id]);
+    $this->assertDatabaseMissing('category_product', [
+        'product_id' => $product->id,
+        'category_id' => $categories->first()->id,
+    ]);
+});

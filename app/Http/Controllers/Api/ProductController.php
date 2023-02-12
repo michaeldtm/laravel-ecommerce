@@ -56,4 +56,27 @@ class ProductController extends Controller
         $product = $product->load(['categories', 'features']);
         return ProductResource::make($product);
     }
+
+    public function update(ProductRequest $request, Product $product): JsonResponse
+    {
+        DB::transaction(function () use ($request, $product) {
+            $product->update($request->validated());
+
+            $product->categories()->sync($request->get('categories'));
+
+            $product->features()->delete();
+            $features = [];
+            foreach ($request->get('features') as $feature) {
+                $model = new ProductFeature;
+                $features[] = $model->fill(['description' => $feature]);
+            }
+            $product->features()->saveMany($features);
+
+            return $product;
+        });
+
+        return response()->json([
+            'message' => __('messages.product.updated'),
+        ]);
+    }
 }
