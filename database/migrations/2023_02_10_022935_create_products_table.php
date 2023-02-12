@@ -19,6 +19,7 @@ return new class extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(User::class)->constrained();
+            $table->ulid('sku')->index();
             $table->string('name');
             $table->longText('description')->nullable();
             $table->integer('price');

@@ -87,7 +87,7 @@ it('get specific product information', function () {
         ->has(ProductFeature::factory()->count(2), 'features')
         ->for($user)->create();
 
-    $this->getJson(route('products.show', $product->id))
+    $this->getJson(route('products.show', $product->sku))
         ->assertOk()
         ->assertJson(fn (AssertableJson $json) =>
             $json->where('data.name', $product->name)
