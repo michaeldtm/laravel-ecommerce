@@ -25,13 +25,5 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
         Route::apiResource('address', UserAddressController::class)->names('user_address');
     });
 
-    Route::get('/products', [ProductController::class, 'index'])->name('products.index');
-
-    Route::post('products', [ProductController::class, 'store'])->name('products.store');
-
-    Route::get('products/{product}', [ProductController::class, 'show'])->name('products.show');
-
-    Route::put('products/{product}', [ProductController::class, 'update'])->name('products.update');
-
-    Route::delete('products/{product}', [ProductController::class, 'destroy'])->name('products.destroy');
+    Route::apiResource('products', ProductController::class)->names('products');
 });
