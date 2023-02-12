@@ -78,3 +78,20 @@ it('requires valid data to create a new product', function ($data, $errors) {
     'categories missing' => [['categories' => null], ['categories' => 'required']],
     'non existing category' => [['categories' => [1]], ['categories.0' => 'invalid']]
 ]);
+
+it('get specific product information', function () {
+    $user = loginAsUser();
+
+    $product = Product::factory()
+        ->has(Category::factory()->count(2))
+        ->has(ProductFeature::factory()->count(2), 'features')
+        ->for($user)->create();
+
+    $this->getJson(route('products.show', $product->id))
+        ->assertOk()
+        ->assertJson(fn (AssertableJson $json) =>
+            $json->where('data.name', $product->name)
+                ->hasAll(['data.categories', 'data.features'])
+                ->etc()
+        );
+});

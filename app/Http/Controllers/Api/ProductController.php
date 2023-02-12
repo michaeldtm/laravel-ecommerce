@@ -50,4 +50,10 @@ class ProductController extends Controller
             'message' => __('messages.product.created')
         ]);
     }
+
+    public function show(Product $product): ProductResource
+    {
+        $product = $product->load(['categories', 'features']);
+        return ProductResource::make($product);
+    }
 }
