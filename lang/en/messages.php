@@ -9,5 +9,6 @@ return [
     'product' => [
         'created' => 'Your new product was added successfully.',
         'updated' => 'Your product was updated successfully.',
+        'deleted' => 'Your product was deleted successfully.',
     ]
 ];

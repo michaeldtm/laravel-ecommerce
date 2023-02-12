@@ -79,4 +79,17 @@ class ProductController extends Controller
             'message' => __('messages.product.updated'),
         ]);
     }
+
+    public function destroy(Product $product): JsonResponse
+    {
+        if ($product->delete()) {
+            return response()->json([
+                'message' => __('messages.product.deleted')
+            ]);
+        }
+
+        return  response()->json([
+            'message' => __('errors.occurred')
+        ]);
+    }
 }

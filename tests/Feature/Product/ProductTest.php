@@ -139,3 +139,17 @@ it('allows to update an existing product', function () {
         'category_id' => $categories->first()->id,
     ]);
 });
+
+it('allows to delete an existing product', function () {
+    $user = loginAsUser();
+
+    $product = Product::factory()->for($user)->create();
+
+    $this->deleteJson(route('products.destroy', $product->sku))
+        ->assertOk()
+        ->assertJson([
+            'message' => __('messages.product.deleted')
+        ]);
+
+    $this->assertDatabaseMissing('user_addresses', ['id' => $product->id]);
+});
