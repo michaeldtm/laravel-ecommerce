@@ -28,5 +28,5 @@ Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
     ->name('logout');
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('app');
 });
