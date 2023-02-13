@@ -27,6 +27,6 @@ Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
     ->middleware('auth')
     ->name('logout');
 
-Route::get('/', function () {
+Route::get('/{any}', function () {
     return view('app');
-});
+})->where('any', '.*');
