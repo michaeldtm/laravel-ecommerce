@@ -157,13 +157,6 @@
 
                         <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-3">
                             <div class="sm:col-span-3">
-                                <label for="company" class="block text-sm font-medium text-gray-700">Company</label>
-                                <div class="mt-1">
-                                    <input type="text" id="company" name="company" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-                                </div>
-                            </div>
-
-                            <div class="sm:col-span-3">
                                 <label for="address" class="block text-sm font-medium text-gray-700">Address</label>
                                 <div class="mt-1">
                                     <input type="text" id="address" name="address" autocomplete="street-address" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">

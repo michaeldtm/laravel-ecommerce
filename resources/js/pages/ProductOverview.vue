@@ -76,7 +76,7 @@
                     <div class="mt-8 lg:col-span-7 lg:col-start-1 lg:row-span-3 lg:row-start-1 lg:mt-0">
                         <h2 class="sr-only">Images</h2>
 
-                        <div class="grid grid-cols-1 lg:grid-cols-2 lg:grid-rows-3 lg:gap-8">
+                        <div class="grid grid-cols-1 lg:grid-cols-1 lg:grid-rows-1 lg:gap-8">
                             <img src="https://tailwindui.com/img/ecommerce-images/category-page-05-image-card-01.jpg" alt="Back of women&#039;s Basic Tee in black." class="lg:col-span-2 lg:row-span-2 rounded-lg">
                         </div>
                     </div>
@@ -148,7 +148,7 @@
             </div>
         </div>
 
-        <div class="mx-auto max-w-2xl py-16 px-4 sm:py-24 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-12 lg:gap-x-8 lg:py-32 lg:px-8">
+        <div class="mx-auto max-w-2xl py-16 px-4 sm:py-24 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-12 lg:gap-x-8 lg:py-0 lg:px-8">
             <div class="lg:col-span-4">
                 <h2 class="text-2xl font-bold tracking-tight text-gray-900">Customer Reviews</h2>
 
