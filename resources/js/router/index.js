@@ -2,8 +2,14 @@ import { createWebHistory, createRouter } from "vue-router";
 import ProductOverview from "../pages/ProductOverview.vue";
 import Checkout from "../pages/Checkout.vue";
 import OrderSummary from "../pages/OrderSummary.vue";
+import Home from "../pages/Home.vue";
 
 const routes = [
+    {
+        path: "/",
+        name: "Home",
+        component: Home,
+    },
     {
         path: "/product",
         name: "ProductOverview",

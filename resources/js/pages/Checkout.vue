@@ -13,13 +13,11 @@
 
                     <ul role="list" class="divide-y divide-gray-200 text-sm font-medium text-gray-900">
                         <li class="flex items-start space-x-4 py-6">
-                            <img src="https://tailwindui.com/img/ecommerce-images/checkout-page-04-product-01.jpg" alt="Moss green canvas compact backpack with double top zipper, zipper front pouch, and matching carry handle and backpack straps." class="h-20 w-20 flex-none rounded-md object-cover object-center">
+                            <img src="https://tailwindui.com/img/ecommerce-images/category-page-05-image-card-01.jpg" alt="Moss green canvas compact backpack with double top zipper, zipper front pouch, and matching carry handle and backpack straps." class="h-20 w-20 flex-none rounded-md object-cover object-center">
                             <div class="flex-auto space-y-1">
-                                <h3>Micro Backpack</h3>
-                                <p class="text-gray-500">Moss</p>
-                                <p class="text-gray-500">5L</p>
+                                <h3>Organize Basic Set (Walnut)</h3>
                             </div>
-                            <p class="flex-none text-base font-medium">$70.00</p>
+                            <p class="flex-none text-base font-medium">$149.00</p>
                         </li>
 
                         <!-- More products... -->
@@ -28,22 +26,22 @@
                     <dl class="hidden space-y-6 border-t border-gray-200 pt-6 text-sm font-medium text-gray-900 lg:block">
                         <div class="flex items-center justify-between">
                             <dt class="text-gray-600">Subtotal</dt>
-                            <dd>$320.00</dd>
+                            <dd>$149.00</dd>
                         </div>
 
                         <div class="flex items-center justify-between">
                             <dt class="text-gray-600">Shipping</dt>
-                            <dd>$15.00</dd>
+                            <dd>$5.00</dd>
                         </div>
 
                         <div class="flex items-center justify-between">
                             <dt class="text-gray-600">Taxes</dt>
-                            <dd>$26.80</dd>
+                            <dd>$18.48</dd>
                         </div>
 
                         <div class="flex items-center justify-between border-t border-gray-200 pt-6">
                             <dt class="text-base">Total</dt>
-                            <dd class="text-base">$361.80</dd>
+                            <dd class="text-base">$172.48</dd>
                         </div>
                     </dl>
 
@@ -214,8 +212,11 @@
                     </section>
 
                     <div class="mt-10 border-t border-gray-200 pt-6 sm:flex sm:items-center sm:justify-between">
-                        <button type="submit" class="w-full rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50 sm:order-last sm:ml-6 sm:w-auto">Continue</button>
-                        <p class="mt-4 text-center text-sm text-gray-500 sm:mt-0 sm:text-left">You won't be charged until the next step.</p>
+                        <router-link
+                            to="/order"
+                            class="w-full rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50 sm:order-last sm:w-auto">
+                            Pay
+                        </router-link>
                     </div>
                 </div>
             </form>

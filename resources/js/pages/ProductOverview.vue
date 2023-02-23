@@ -5,16 +5,7 @@
                 <ol role="list" class="flex items-center space-x-4">
                     <li>
                         <div class="flex items-center">
-                            <a href="#" class="mr-4 text-sm font-medium text-gray-900">Women</a>
-                            <svg viewBox="0 0 6 20" aria-hidden="true" class="h-5 w-auto text-gray-300">
-                                <path d="M4.878 4.34H3.551L.27 16.532h1.327l3.281-12.19z" fill="currentColor" />
-                            </svg>
-                        </div>
-                    </li>
-
-                    <li>
-                        <div class="flex items-center">
-                            <a href="#" class="mr-4 text-sm font-medium text-gray-900">Clothing</a>
+                            <a href="#" class="mr-4 text-sm font-medium text-gray-900">Accessories</a>
                             <svg viewBox="0 0 6 20" aria-hidden="true" class="h-5 w-auto text-gray-300">
                                 <path d="M4.878 4.34H3.551L.27 16.532h1.327l3.281-12.19z" fill="currentColor" />
                             </svg>
@@ -22,7 +13,9 @@
                     </li>
 
                     <li class="text-sm">
-                        <a href="#" aria-current="page" class="font-medium text-gray-500 hover:text-gray-600">Basic Tee</a>
+                        <a href="#" aria-current="page" class="font-medium text-gray-500 hover:text-gray-600">
+                            Organize Basic Set (Walnut)
+                        </a>
                     </li>
                 </ol>
             </nav>
@@ -30,15 +23,15 @@
                 <div class="lg:grid lg:auto-rows-min lg:grid-cols-12 lg:gap-x-8">
                     <div class="lg:col-span-5 lg:col-start-8">
                         <div class="flex justify-between">
-                            <h1 class="text-xl font-medium text-gray-900">Basic Tee</h1>
-                            <p class="text-xl font-medium text-gray-900">$35</p>
+                            <h1 class="text-xl font-medium text-gray-900">Organize Basic Set (Walnut)</h1>
+                            <p class="text-xl font-medium text-gray-900">$149</p>
                         </div>
                         <!-- Reviews -->
                         <div class="mt-4">
                             <h2 class="sr-only">Reviews</h2>
                             <div class="flex items-center">
                                 <p class="text-sm text-gray-700">
-                                    3.9
+                                    5
                                     <span class="sr-only"> out of 5 stars</span>
                                 </p>
                                 <div class="ml-1 flex items-center">
@@ -73,7 +66,7 @@
                                 </div>
                                 <div aria-hidden="true" class="ml-4 text-sm text-gray-300">·</div>
                                 <div class="ml-4 flex">
-                                    <a href="#" class="text-sm font-medium text-indigo-600 hover:text-indigo-500">See all 512 reviews</a>
+                                    <a href="#" class="text-sm font-medium text-indigo-600 hover:text-indigo-500">See all 38 reviews</a>
                                 </div>
                             </div>
                         </div>
@@ -84,11 +77,7 @@
                         <h2 class="sr-only">Images</h2>
 
                         <div class="grid grid-cols-1 lg:grid-cols-2 lg:grid-rows-3 lg:gap-8">
-                            <img src="https://tailwindui.com/img/ecommerce-images/product-page-01-featured-product-shot.jpg" alt="Back of women&#039;s Basic Tee in black." class="lg:col-span-2 lg:row-span-2 rounded-lg">
-
-                            <img src="https://tailwindui.com/img/ecommerce-images/product-page-01-product-shot-01.jpg" alt="Side profile of women&#039;s Basic Tee in black." class="hidden lg:block rounded-lg">
-
-                            <img src="https://tailwindui.com/img/ecommerce-images/product-page-01-product-shot-02.jpg" alt="Front of women&#039;s Basic Tee in black." class="hidden lg:block rounded-lg">
+                            <img src="https://tailwindui.com/img/ecommerce-images/category-page-05-image-card-01.jpg" alt="Back of women&#039;s Basic Tee in black." class="lg:col-span-2 lg:row-span-2 rounded-lg">
                         </div>
                     </div>
 
@@ -124,80 +113,11 @@
                                 </fieldset>
                             </div>
 
-                            <!-- Size picker -->
-                            <div class="mt-8">
-                                <div class="flex items-center justify-between">
-                                    <h2 class="text-sm font-medium text-gray-900">Size</h2>
-                                    <a href="#" class="text-sm font-medium text-indigo-600 hover:text-indigo-500">See sizing chart</a>
-                                </div>
-
-                                <fieldset class="mt-2">
-                                    <legend class="sr-only">Choose a size</legend>
-                                    <div class="grid grid-cols-3 gap-3 sm:grid-cols-6">
-                                        <!--
-                                          In Stock: "cursor-pointer", Out of Stock: "opacity-25 cursor-not-allowed"
-                                          Active: "ring-2 ring-offset-2 ring-indigo-500"
-                                          Checked: "bg-indigo-600 border-transparent text-white hover:bg-indigo-700", Not Checked: "bg-white border-gray-200 text-gray-900 hover:bg-gray-50"
-                                        -->
-                                        <label class="border rounded-md py-3 px-3 flex items-center justify-center text-sm font-medium uppercase sm:flex-1 cursor-pointer focus:outline-none">
-                                            <input type="radio" name="size-choice" value="XXS" class="sr-only" aria-labelledby="size-choice-0-label">
-                                            <span id="size-choice-0-label">XXS</span>
-                                        </label>
-
-                                        <!--
-                                          In Stock: "cursor-pointer", Out of Stock: "opacity-25 cursor-not-allowed"
-                                          Active: "ring-2 ring-offset-2 ring-indigo-500"
-                                          Checked: "bg-indigo-600 border-transparent text-white hover:bg-indigo-700", Not Checked: "bg-white border-gray-200 text-gray-900 hover:bg-gray-50"
-                                        -->
-                                        <label class="border rounded-md py-3 px-3 flex items-center justify-center text-sm font-medium uppercase sm:flex-1 cursor-pointer focus:outline-none">
-                                            <input type="radio" name="size-choice" value="XS" class="sr-only" aria-labelledby="size-choice-1-label">
-                                            <span id="size-choice-1-label">XS</span>
-                                        </label>
-
-                                        <!--
-                                          In Stock: "cursor-pointer", Out of Stock: "opacity-25 cursor-not-allowed"
-                                          Active: "ring-2 ring-offset-2 ring-indigo-500"
-                                          Checked: "bg-indigo-600 border-transparent text-white hover:bg-indigo-700", Not Checked: "bg-white border-gray-200 text-gray-900 hover:bg-gray-50"
-                                        -->
-                                        <label class="border rounded-md py-3 px-3 flex items-center justify-center text-sm font-medium uppercase sm:flex-1 cursor-pointer focus:outline-none">
-                                            <input type="radio" name="size-choice" value="S" class="sr-only" aria-labelledby="size-choice-2-label">
-                                            <span id="size-choice-2-label">S</span>
-                                        </label>
-
-                                        <!--
-                                          In Stock: "cursor-pointer", Out of Stock: "opacity-25 cursor-not-allowed"
-                                          Active: "ring-2 ring-offset-2 ring-indigo-500"
-                                          Checked: "bg-indigo-600 border-transparent text-white hover:bg-indigo-700", Not Checked: "bg-white border-gray-200 text-gray-900 hover:bg-gray-50"
-                                        -->
-                                        <label class="border rounded-md py-3 px-3 flex items-center justify-center text-sm font-medium uppercase sm:flex-1 cursor-pointer focus:outline-none">
-                                            <input type="radio" name="size-choice" value="M" class="sr-only" aria-labelledby="size-choice-3-label">
-                                            <span id="size-choice-3-label">M</span>
-                                        </label>
-
-                                        <!--
-                                          In Stock: "cursor-pointer", Out of Stock: "opacity-25 cursor-not-allowed"
-                                          Active: "ring-2 ring-offset-2 ring-indigo-500"
-                                          Checked: "bg-indigo-600 border-transparent text-white hover:bg-indigo-700", Not Checked: "bg-white border-gray-200 text-gray-900 hover:bg-gray-50"
-                                        -->
-                                        <label class="border rounded-md py-3 px-3 flex items-center justify-center text-sm font-medium uppercase sm:flex-1 cursor-pointer focus:outline-none">
-                                            <input type="radio" name="size-choice" value="L" class="sr-only" aria-labelledby="size-choice-4-label">
-                                            <span id="size-choice-4-label">L</span>
-                                        </label>
-
-                                        <!--
-                                          In Stock: "cursor-pointer", Out of Stock: "opacity-25 cursor-not-allowed"
-                                          Active: "ring-2 ring-offset-2 ring-indigo-500"
-                                          Checked: "bg-indigo-600 border-transparent text-white hover:bg-indigo-700", Not Checked: "bg-white border-gray-200 text-gray-900 hover:bg-gray-50"
-                                        -->
-                                        <label class="border rounded-md py-3 px-3 flex items-center justify-center text-sm font-medium uppercase sm:flex-1 opacity-25 cursor-not-allowed">
-                                            <input type="radio" name="size-choice" value="XL" disabled class="sr-only" aria-labelledby="size-choice-5-label">
-                                            <span id="size-choice-5-label">XL</span>
-                                        </label>
-                                    </div>
-                                </fieldset>
-                            </div>
-
-                            <button type="submit" class="mt-8 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 py-3 px-8 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Add to cart</button>
+                            <router-link
+                                to="/checkout"
+                                class="mt-8 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 py-3 px-8 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                                Pay
+                            </router-link>
                         </form>
 
                         <!-- Product details -->
@@ -205,13 +125,13 @@
                             <h2 class="text-sm font-medium text-gray-900">Description</h2>
 
                             <div class="prose prose-sm mt-4 text-gray-500">
-                                <p>The Basic tee is an honest new take on a classic. The tee uses super soft, pre-shrunk cotton for true comfort and a dependable fit. They are hand cut and sewn locally, with a special dye technique that gives each tee it's own look.</p>
-                                <p>Looking to stock your closet? The Basic tee also comes in a 3-pack or 5-pack at a bundle discount.</p>
+                                <p>Gather is a minimal, modular organizer that helps you cut through your clutter.</p>
+                                <p>Gather adapts to your workspace and workflow to make sure the tools you need are always within reach and is flexible enough to use in any space.</p>
                             </div>
                         </div>
 
                         <div class="mt-8 border-t border-gray-200 pt-8">
-                            <h2 class="text-sm font-medium text-gray-900">Fabric &amp; Care</h2>
+                            <h2 class="text-sm font-medium text-gray-900">Characteristics</h2>
 
                             <div class="prose prose-sm mt-4 text-gray-500">
                                 <ul role="list">
@@ -219,9 +139,7 @@
 
                                     <li>Ethically and locally made</li>
 
-                                    <li>Pre-washed and pre-shrunk</li>
-
-                                    <li>Machine wash cold with similar colors</li>
+                                    <li>Really nice looking</li>
                                 </ul>
                             </div>
                         </div>
