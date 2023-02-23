@@ -180,13 +180,13 @@
                             </svg>
 
                             <!-- Heroicon name: mini/star -->
-                            <svg class="flex-shrink-0 h-5 w-5 text-gray-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                            <svg class="flex-shrink-0 h-5 w-5 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                                 <path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />
                             </svg>
                         </div>
-                        <p class="sr-only">4 out of 5 stars</p>
+                        <p class="sr-only">5 out of 5 stars</p>
                     </div>
-                    <p class="ml-2 text-sm text-gray-900">Based on 1624 reviews</p>
+                    <p class="ml-2 text-sm text-gray-900">Based on 38 reviews</p>
                 </div>
 
                 <div class="mt-6">
@@ -205,11 +205,11 @@
                                     <div class="relative ml-3 flex-1">
                                         <div class="h-3 rounded-full border border-gray-200 bg-gray-100"></div>
 
-                                        <div style="width: calc(1019 / 1624 * 100%)" class="absolute inset-y-0 rounded-full border border-yellow-400 bg-yellow-400"></div>
+                                        <div style="width: calc(1624 / 1624 * 100%)" class="absolute inset-y-0 rounded-full border border-yellow-400 bg-yellow-400"></div>
                                     </div>
                                 </div>
                             </dt>
-                            <dd class="ml-3 w-10 text-right text-sm tabular-nums text-gray-900">63%</dd>
+                            <dd class="ml-3 w-10 text-right text-sm tabular-nums text-gray-900">100%</dd>
                         </div>
 
                         <div class="flex items-center text-sm">
@@ -224,11 +224,11 @@
                                     <div class="relative ml-3 flex-1">
                                         <div class="h-3 rounded-full border border-gray-200 bg-gray-100"></div>
 
-                                        <div style="width: calc(162 / 1624 * 100%)" class="absolute inset-y-0 rounded-full border border-yellow-400 bg-yellow-400"></div>
+                                        <div style="width: calc(25 / 1624 * 100%)" class="absolute inset-y-0 rounded-full border border-yellow-400 bg-yellow-400"></div>
                                     </div>
                                 </div>
                             </dt>
-                            <dd class="ml-3 w-10 text-right text-sm tabular-nums text-gray-900">10%</dd>
+                            <dd class="ml-3 w-10 text-right text-sm tabular-nums text-gray-900">0%</dd>
                         </div>
 
                         <div class="flex items-center text-sm">
@@ -243,11 +243,11 @@
                                     <div class="relative ml-3 flex-1">
                                         <div class="h-3 rounded-full border border-gray-200 bg-gray-100"></div>
 
-                                        <div style="width: calc(97 / 1624 * 100%)" class="absolute inset-y-0 rounded-full border border-yellow-400 bg-yellow-400"></div>
+                                        <div style="width: calc(25 / 1624 * 100%)" class="absolute inset-y-0 rounded-full border border-yellow-400 bg-yellow-400"></div>
                                     </div>
                                 </div>
                             </dt>
-                            <dd class="ml-3 w-10 text-right text-sm tabular-nums text-gray-900">6%</dd>
+                            <dd class="ml-3 w-10 text-right text-sm tabular-nums text-gray-900">0%</dd>
                         </div>
 
                         <div class="flex items-center text-sm">
@@ -262,11 +262,11 @@
                                     <div class="relative ml-3 flex-1">
                                         <div class="h-3 rounded-full border border-gray-200 bg-gray-100"></div>
 
-                                        <div style="width: calc(199 / 1624 * 100%)" class="absolute inset-y-0 rounded-full border border-yellow-400 bg-yellow-400"></div>
+                                        <div style="width: calc(25 / 1624 * 100%)" class="absolute inset-y-0 rounded-full border border-yellow-400 bg-yellow-400"></div>
                                     </div>
                                 </div>
                             </dt>
-                            <dd class="ml-3 w-10 text-right text-sm tabular-nums text-gray-900">12%</dd>
+                            <dd class="ml-3 w-10 text-right text-sm tabular-nums text-gray-900">0%</dd>
                         </div>
 
                         <div class="flex items-center text-sm">
@@ -281,11 +281,11 @@
                                     <div class="relative ml-3 flex-1">
                                         <div class="h-3 rounded-full border border-gray-200 bg-gray-100"></div>
 
-                                        <div style="width: calc(147 / 1624 * 100%)" class="absolute inset-y-0 rounded-full border border-yellow-400 bg-yellow-400"></div>
+                                        <div style="width: calc(25 / 1624 * 100%)" class="absolute inset-y-0 rounded-full border border-yellow-400 bg-yellow-400"></div>
                                     </div>
                                 </div>
                             </dt>
-                            <dd class="ml-3 w-10 text-right text-sm tabular-nums text-gray-900">9%</dd>
+                            <dd class="ml-3 w-10 text-right text-sm tabular-nums text-gray-900">0%</dd>
                         </div>
                     </dl>
                 </div>
