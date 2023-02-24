@@ -14,7 +14,7 @@
 
                     <li class="text-sm">
                         <a href="#" aria-current="page" class="font-medium text-gray-500 hover:text-gray-600">
-                            Organize Basic Set (Walnut)
+                            {{ product?.name }}
                         </a>
                     </li>
                 </ol>
@@ -23,8 +23,8 @@
                 <div class="lg:grid lg:auto-rows-min lg:grid-cols-12 lg:gap-x-8">
                     <div class="lg:col-span-5 lg:col-start-8">
                         <div class="flex justify-between">
-                            <h1 class="text-xl font-medium text-gray-900">Organize Basic Set (Walnut)</h1>
-                            <p class="text-xl font-medium text-gray-900">$149</p>
+                            <h1 class="text-xl font-medium text-gray-900">{{ product?.name }}</h1>
+                            <p class="text-xl font-medium text-gray-900">${{ product?.price }}</p>
                         </div>
                         <!-- Reviews -->
                         <div class="mt-4">
@@ -77,69 +77,26 @@
                         <h2 class="sr-only">Images</h2>
 
                         <div class="grid grid-cols-1 lg:grid-cols-1 lg:grid-rows-1 lg:gap-8">
-                            <img src="https://tailwindui.com/img/ecommerce-images/category-page-05-image-card-01.jpg" alt="Back of women&#039;s Basic Tee in black." class="lg:col-span-2 lg:row-span-2 rounded-lg">
+                            <img :src="product?.images[0].url" alt="Product image" class="lg:col-span-2 lg:row-span-2 rounded-lg">
                         </div>
                     </div>
 
-                    <div class="mt-8 lg:col-span-5">
-                        <form>
-                            <!-- Color picker -->
-                            <div>
-                                <h2 class="text-sm font-medium text-gray-900">Color</h2>
-
-                                <fieldset class="mt-2">
-                                    <legend class="sr-only">Choose a color</legend>
-                                    <div class="flex items-center space-x-3">
-                                        <!--
-                                          Active and Checked: "ring ring-offset-1"
-                                          Not Active and Checked: "ring-2"
-                                        -->
-                                        <label class="-m-0.5 relative p-0.5 rounded-full flex items-center justify-center cursor-pointer focus:outline-none ring-gray-900">
-                                            <input type="radio" name="color-choice" value="Black" class="sr-only" aria-labelledby="color-choice-0-label">
-                                            <span id="color-choice-0-label" class="sr-only"> Black </span>
-                                            <span aria-hidden="true" class="h-8 w-8 bg-gray-900 border border-black border-opacity-10 rounded-full"></span>
-                                        </label>
-
-                                        <!--
-                                          Active and Checked: "ring ring-offset-1"
-                                          Not Active and Checked: "ring-2"
-                                        -->
-                                        <label class="-m-0.5 relative p-0.5 rounded-full flex items-center justify-center cursor-pointer focus:outline-none ring-gray-400">
-                                            <input type="radio" name="color-choice" value="Heather Grey" class="sr-only" aria-labelledby="color-choice-1-label">
-                                            <span id="color-choice-1-label" class="sr-only"> Heather Grey </span>
-                                            <span aria-hidden="true" class="h-8 w-8 bg-gray-400 border border-black border-opacity-10 rounded-full"></span>
-                                        </label>
-                                    </div>
-                                </fieldset>
-                            </div>
-
-                            <router-link
-                                to="/checkout"
-                                class="mt-8 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 py-3 px-8 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
-                                Pay
-                            </router-link>
-                        </form>
-
+                    <div class="lg:col-span-5">
                         <!-- Product details -->
                         <div class="mt-10">
                             <h2 class="text-sm font-medium text-gray-900">Description</h2>
 
                             <div class="prose prose-sm mt-4 text-gray-500">
-                                <p>Gather is a minimal, modular organizer that helps you cut through your clutter.</p>
-                                <p>Gather adapts to your workspace and workflow to make sure the tools you need are always within reach and is flexible enough to use in any space.</p>
+                                <p>{{ product?.description }}</p>
                             </div>
                         </div>
 
                         <div class="mt-8 border-t border-gray-200 pt-8">
-                            <h2 class="text-sm font-medium text-gray-900">Characteristics</h2>
+                            <h2 class="text-sm font-medium text-gray-900">Features</h2>
 
                             <div class="prose prose-sm mt-4 text-gray-500">
                                 <ul role="list">
-                                    <li>Only the best materials</li>
-
-                                    <li>Ethically and locally made</li>
-
-                                    <li>Really nice looking</li>
+                                    <li v-for="feature in product?.features">{{ feature.description }}</li>
                                 </ul>
                             </div>
                         </div>
@@ -357,6 +314,20 @@
 
 <script>
 export default {
-    name: "ProductOverview"
+    name: "ProductOverview",
+    data: () => ({
+        product: null
+    }),
+    mounted() {
+        this.initialLoad();
+    },
+    methods: {
+        initialLoad () {
+            axios.get(`/api/marketplace/products/${this.$route.params.sku}`)
+                .then(({data: res}) => {
+                    this.product = res.data
+                })
+        }
+    }
 }
 </script>

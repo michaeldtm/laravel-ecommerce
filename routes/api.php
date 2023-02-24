@@ -22,6 +22,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('marketplace', MarketplaceController::class)->name('marketplace');
+Route::get('marketplace/products/{product}', [ProductController::class, 'show']);
 
 Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::prefix('user')->group(function () {
