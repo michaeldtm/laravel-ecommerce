@@ -3,6 +3,7 @@ import ProductOverview from "../pages/ProductOverview.vue";
 import Checkout from "../pages/Checkout.vue";
 import OrderSummary from "../pages/OrderSummary.vue";
 import Home from "../pages/Home.vue";
+import Cart from "../pages/Cart.vue";
 
 const routes = [
     {
@@ -16,12 +17,17 @@ const routes = [
         component: ProductOverview,
     },
     {
+        path: "/shopping-cart",
+        name: "Cart",
+        component: Cart,
+    },
+    {
         path: "/checkout",
         name: "Checkout",
         component: Checkout,
     },
     {
-        path: "/order",
+        path: "/order/:id",
         name: "OrderSummary",
         component: OrderSummary,
     },

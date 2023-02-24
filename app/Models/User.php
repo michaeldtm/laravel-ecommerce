@@ -57,6 +57,11 @@ class User extends Authenticatable
         return $this->hasMany(Product::class);
     }
 
+    public function carts(): HasMany
+    {
+        return $this->hasMany(MarketplaceCart::class);
+    }
+
     public function hasDefaultAddress(): bool
     {
         return $this->addresses->where('default_address', true)->isNotEmpty();

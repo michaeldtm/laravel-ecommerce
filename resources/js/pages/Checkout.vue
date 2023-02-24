@@ -12,12 +12,12 @@
                     <h2 id="summary-heading" class="text-lg font-medium text-gray-900">Order summary</h2>
 
                     <ul role="list" class="divide-y divide-gray-200 text-sm font-medium text-gray-900">
-                        <li class="flex items-start space-x-4 py-6">
-                            <img src="https://tailwindui.com/img/ecommerce-images/category-page-05-image-card-01.jpg" alt="Moss green canvas compact backpack with double top zipper, zipper front pouch, and matching carry handle and backpack straps." class="h-20 w-20 flex-none rounded-md object-cover object-center">
+                        <li class="flex items-start space-x-4 py-6" v-for="item in items">
+                            <img :src="item.images[0].url" alt="Moss green canvas compact backpack with double top zipper, zipper front pouch, and matching carry handle and backpack straps." class="h-20 w-20 flex-none rounded-md object-cover object-center">
                             <div class="flex-auto space-y-1">
-                                <h3>Organize Basic Set (Walnut)</h3>
+                                <h3>{{ item.name }}</h3>
                             </div>
-                            <p class="flex-none text-base font-medium">$149.00</p>
+                            <p class="flex-none text-base font-medium">${{ item.price }}.00</p>
                         </li>
 
                         <!-- More products... -->
@@ -26,22 +26,22 @@
                     <dl class="hidden space-y-6 border-t border-gray-200 pt-6 text-sm font-medium text-gray-900 lg:block">
                         <div class="flex items-center justify-between">
                             <dt class="text-gray-600">Subtotal</dt>
-                            <dd>$149.00</dd>
+                            <dd>${{ subtotal }}.00</dd>
                         </div>
 
                         <div class="flex items-center justify-between">
                             <dt class="text-gray-600">Shipping</dt>
-                            <dd>$5.00</dd>
+                            <dd>${{shipping}}.00</dd>
                         </div>
 
                         <div class="flex items-center justify-between">
                             <dt class="text-gray-600">Taxes</dt>
-                            <dd>$18.48</dd>
+                            <dd>{{ formatter?.format(tax) }}</dd>
                         </div>
 
                         <div class="flex items-center justify-between border-t border-gray-200 pt-6">
                             <dt class="text-base">Total</dt>
-                            <dd class="text-base">$172.48</dd>
+                            <dd class="text-base">{{ formatter?.format(total) }}</dd>
                         </div>
                     </dl>
 
@@ -50,7 +50,7 @@
                             <div class="mx-auto max-w-lg">
                                 <button type="button" class="flex w-full items-center py-6 font-medium" aria-expanded="false">
                                     <span class="mr-auto text-base">Total</span>
-                                    <span class="mr-2 text-base">$361.80</span>
+                                    <span class="mr-2 text-base">{{ formatter?.format(total) }}</span>
                                     <!-- Heroicon name: mini/chevron-up -->
                                     <svg class="h-5 w-5 text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                                         <path fill-rule="evenodd" d="M14.77 12.79a.75.75 0 01-1.06-.02L10 8.832 6.29 12.77a.75.75 0 11-1.08-1.04l4.25-4.5a.75.75 0 011.08 0l4.25 4.5a.75.75 0 01-.02 1.06z" clip-rule="evenodd" />
@@ -86,17 +86,17 @@
                                 <dl class="mx-auto max-w-lg space-y-6">
                                     <div class="flex items-center justify-between">
                                         <dt class="text-gray-600">Subtotal</dt>
-                                        <dd>$320.00</dd>
+                                        <dd>${{ subtotal }}.00</dd>
                                     </div>
 
                                     <div class="flex items-center justify-between">
                                         <dt class="text-gray-600">Shipping</dt>
-                                        <dd>$15.00</dd>
+                                        <dd>${{ shipping }}.00</dd>
                                     </div>
 
                                     <div class="flex items-center justify-between">
                                         <dt class="text-gray-600">Taxes</dt>
-                                        <dd>$26.80</dd>
+                                        <dd>{{ formatter?.format(tax) }}</dd>
                                     </div>
                                 </dl>
                             </div>
@@ -205,11 +205,12 @@
                     </section>
 
                     <div class="mt-10 border-t border-gray-200 pt-6 sm:flex sm:items-center sm:justify-between">
-                        <router-link
-                            to="/order"
+                        <button
+                            @click.prevent="pay"
+                            type="submit"
                             class="w-full rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50 sm:order-last sm:w-auto">
                             Pay
-                        </router-link>
+                        </button>
                     </div>
                 </div>
             </form>
@@ -219,7 +220,50 @@
 
 <script>
 export default {
-    name: "Checkout"
+    name: "Checkout",
+    data: () => ({
+        items: null,
+        cartId: null,
+        shipping: 5,
+        tax_percent: 12,
+        formatter: null,
+    }),
+    mounted() {
+        this.initialLoad()
+        this.formatter = Intl.NumberFormat('en-US', {
+            style: 'currency',
+            currency: 'USD'
+        })
+    },
+    methods: {
+        initialLoad() {
+            axios.get(`/api/marketplace/cart`)
+                .then(({data: res}) => {
+                    this.cartId = res.id
+                    this.items = res.items
+                })
+        },
+        pay() {
+            axios.delete(`/api/marketplace/cart/${this.cartId}`)
+                .then(() => {
+                    this.$router.push({ name: 'OrderSummary', params: {id: this.cartId}})
+                })
+        }
+    },
+    computed: {
+        subtotal() {
+            return this.items?.reduce((carry, item) => {
+                return carry + item.price
+            }, 0)
+        },
+        tax() {
+            const subtotal = this.subtotal + this.shipping
+            return subtotal * (this.tax_percent / 100)
+        },
+        total() {
+            return this.subtotal + this.tax
+        }
+    }
 }
 </script>
 

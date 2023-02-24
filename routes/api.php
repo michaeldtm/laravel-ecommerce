@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\CartController;
 use App\Http\Controllers\Api\MarketplaceController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\UserAddressController;
@@ -23,6 +24,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('marketplace', MarketplaceController::class)->name('marketplace');
 Route::get('marketplace/products/{product}', [ProductController::class, 'show']);
+
+Route::get('marketplace/cart', [CartController::class, 'index']);
+Route::get('marketplace/cart/{cart}', [CartController::class, 'show']);
+Route::post('marketplace/cart', [CartController::class, 'store']);
+Route::delete('marketplace/cart/{cart}', [CartController::class, 'destroy']);
 
 Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::prefix('user')->group(function () {
