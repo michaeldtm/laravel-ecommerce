@@ -67,9 +67,9 @@
                         <div class="mt-8 border-t border-gray-200 pt-8">
                             <h2 class="text-sm font-medium text-gray-900">Features</h2>
 
-                            <div class="prose prose-sm mt-4 text-gray-500">
+                            <div class="prose prose-sm mt-4 mr-8 text-gray-500 text-sm text-justify">
                                 <ul role="list">
-                                    <li v-for="feature in product?.features">{{ feature.description }}</li>
+                                    <li class="mb-1.5" v-for="feature in product?.features">{{ feature.description }}</li>
                                 </ul>
                             </div>
                         </div>
