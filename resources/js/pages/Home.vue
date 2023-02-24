@@ -6,7 +6,7 @@
             <div class="-mx-px grid grid-cols-2 border-gray-200 sm:mx-0 md:grid-cols-3 lg:grid-cols-4">
                 <div class="group relative border border-gray-200 p-4 sm:p-6" v-for="(product, key) in products" :key="key">
                     <div class="aspect-w-1 aspect-h-1 overflow-hidden rounded-lg bg-gray-200 group-hover:opacity-75">
-                        <img :src="product.image" alt="TODO" class="h-full w-full object-cover object-center">
+                        <img :src="product.images[0].url" alt="TODO" class="h-full w-full object-cover object-center">
                     </div>
                     <div class="pt-10 pb-4 text-center">
                         <h3 class="text-sm font-medium text-gray-900">
@@ -52,64 +52,19 @@
 export default {
     name: "Home",
     data: () => ({
-        products: [
-            {
-                name: 'Organize Basic Set (Walnut)',
-                price: 149,
-                reviews: 38,
-                image: 'https://tailwindui.com/img/ecommerce-images/category-page-05-image-card-01.jpg'
-            },
-            {
-                name: 'Organize Pen Holder',
-                price: 15,
-                reviews: 18,
-                image: 'https://tailwindui.com/img/ecommerce-images/category-page-05-image-card-02.jpg'
-            },
-            {
-                name: 'Organize Sticky Note Holder',
-                price: 15,
-                reviews: 14,
-                image: 'https://tailwindui.com/img/ecommerce-images/category-page-05-image-card-03.jpg'
-            },
-            {
-                name: 'Organize Phone Holder',
-                price: 15,
-                reviews: 21,
-                image: 'https://tailwindui.com/img/ecommerce-images/category-page-05-image-card-04.jpg'
-            }
-            ,
-            {
-                name: 'Organize Small Tray',
-                price: 15,
-                reviews: 22,
-                image: 'https://tailwindui.com/img/ecommerce-images/category-page-05-image-card-05.jpg'
-            },
-            {
-                name: 'Organize Basic Set (Maple)',
-                price: 149,
-                reviews: 64,
-                image: 'https://tailwindui.com/img/ecommerce-images/category-page-05-image-card-06.jpg'
-            },
-            {
-                name: 'Out and About Bottle',
-                price: 25,
-                reviews: 12,
-                image: 'https://tailwindui.com/img/ecommerce-images/category-page-05-image-card-07.jpg'
-            },
-            {
-                name: 'Daily Notebook Refill Pack',
-                price: 14,
-                reviews: 41,
-                image: 'https://tailwindui.com/img/ecommerce-images/category-page-05-image-card-08.jpg'
-            },
-            {
-                name: 'Leather Key Ring (Black)',
-                price: 32,
-                reviews: 24,
-                image: 'https://tailwindui.com/img/ecommerce-images/category-page-05-image-card-09.jpg'
-            }
-        ]
-    })
+        products: []
+    }),
+    mounted() {
+        this.loadProducts()
+    },
+    methods: {
+        loadProducts () {
+            axios.get('/api/marketplace?include=features,images')
+                .then(({data: res}) => {
+                    this.products = res.data
+                })
+        }
+    }
 }
 </script>
 
