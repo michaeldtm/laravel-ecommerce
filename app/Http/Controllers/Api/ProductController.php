@@ -53,7 +53,7 @@ class ProductController extends Controller
 
     public function show(Product $product): ProductResource
     {
-        $product = $product->load(['categories', 'features']);
+        $product = $product->load(['categories', 'features', 'images']);
         return ProductResource::make($product);
     }
 
