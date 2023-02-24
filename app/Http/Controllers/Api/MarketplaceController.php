@@ -19,6 +19,8 @@ class MarketplaceController extends Controller
             ->allowedFilters(['name', 'description', AllowedFilter::custom('cat', new ProductCategoryFilter)])
             ->allowedSorts(['name', 'price'])
             ->defaultSort('name')
+            ->withCount('reviews')
+            ->withAvg('reviews', 'stars')
             ->simplePaginate(25);
 
         return ProductResource::collection($products);
