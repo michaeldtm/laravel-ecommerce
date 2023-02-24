@@ -27,16 +27,6 @@ return new class extends Migration
             $table->softDeletes();
         });
 
-        Schema::create('product_images', function (Blueprint $table) {
-            $table->id();
-            $table->foreignIdFor(Product::class)->constrained();
-            $table->string('location');
-            $table->string('alias');
-            $table->string('original_name');
-            $table->string('mime_type');
-            $table->timestamps();
-        });
-
         Schema::create('category_product', function (Blueprint $table) {
             $table->foreignIdFor(Category::class);
             $table->foreignIdFor(Product::class);
@@ -51,7 +41,6 @@ return new class extends Migration
     public function down()
     {
         Schema::dropIfExists('categories_products');
-        Schema::dropIfExists('product_images');
         Schema::dropIfExists('products');
     }
 };
